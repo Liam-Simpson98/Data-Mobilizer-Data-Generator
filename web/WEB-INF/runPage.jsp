@@ -26,11 +26,15 @@
                     </div>
                     <div class="middle">
                         <div class="text"> 
-                            <input class="button" type="submit" value="Run" name="run">
+                            <div class="trainID">
+                                <label for="carID">Car ID:</label>
+                                <p><input type="text" id="carID" name="carID" value="${carID}" required></p>
                         </div>
+                        <input class="button" type="submit" value="Run" name="run">
                     </div>
                 </div>
-            </form>
-            <p class="text">${buttonPress}</p>
+            </div>
+        </form>
+        <p class="text">${buttonPress}</p>
     </body>
 </html>

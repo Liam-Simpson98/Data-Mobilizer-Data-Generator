@@ -10,19 +10,20 @@ import managers.generateExcel;
 public class RunPageServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/runPage.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        generateExcel obj = new generateExcel();
-        String jsonString = obj.generateJSON();
-        int responseCode = obj.postRequest(jsonString);
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String carID = request.getParameter("carID");
+
+        generateExcel car = new generateExcel(carID);
+
+        String jsonString = car.generateJSON();
+        int responseCode = car.postRequest(jsonString);
+
         if (responseCode == 200) {
             request.setAttribute("buttonPress", "Data Generated");
         } else {
@@ -30,6 +31,6 @@ public class RunPageServlet extends HttpServlet {
         }
 
         getServletContext().getRequestDispatcher("/WEB-INF/runPage.jsp").forward(request, response);
-    }
 
+    }
 }
