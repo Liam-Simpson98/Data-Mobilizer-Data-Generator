@@ -20,6 +20,12 @@ import models.TestVector;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * Generate Excel.
+ * 
+ * @author Trevor Parlee
+ * @version March 4, 2021
+ */
 public class generateExcel {
    
     // fillTime is 1hr and 20 min in seconds
@@ -47,18 +53,38 @@ public class generateExcel {
 
     private String carID = getID(); //Access it from servlet
     
+    /**
+     * Generate Excel.
+     * 
+     * @param carID is the identification of the car.
+     */
     public generateExcel(String carID) {
         this.carID = carID;
     }
-    
+
+    /**
+     * Set ID.
+     * 
+     * @param carID is the identification of the car.
+     */    
     public void setID(String carID) {
         this.carID = carID;
     }
     
+    /**
+     * Get ID.
+     * 
+     * @return the identification of the car.
+     */
     public String getID() {
         return carID;
     }
     
+    /**
+     * To String.
+     * 
+     * @return the carID in string format.
+     */
     @Override
     public String toString() {
         return String.format(carID);
@@ -68,6 +94,11 @@ public class generateExcel {
     List<TestVector> listTestVectors = new ArrayList<TestVector>();
     JSONArray listArray = new JSONArray();
 
+    /**
+     * Generate JSON.
+     * 
+     * @return the JSON file.
+     */
     public String generateJSON() {
         while (count < fillTime) {
 
@@ -151,6 +182,12 @@ public class generateExcel {
         return listArray.toJSONString();
     }
 
+    /**
+     * Post Request.
+     * 
+     * @param jsonInputString is the JSON string.
+     * @return the response code.
+     */
     public int postRequest(String jsonInputString) {
 
         try {
